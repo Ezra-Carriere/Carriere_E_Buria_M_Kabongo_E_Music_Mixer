@@ -8,23 +8,23 @@
     <title>Music Mixer</title>
 </head>
 <body>
-    <div class="grid">
-    <header>
+
+    
+    
+    <main>
         <div class="logo">
             <h1>Music Mixer</h1>
         </div>
         <div class="navbar">
-        <nav>
+        
             <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Rules</a></li>
-                <li><a href="#">Info</a></li>
+                <li id="about"><a href="#">About</a></li>
+                <li id="rules"><a href="#">Rules</a></li>
+                <li id="info"><a href="#">Info</a></li>
             </ul>
-        </nav>
+        
         </div>
-    </header>
-    <main>
-        <section>
+        <section class="grid" id="sounds">
         <div class="box" id="sound-box1">
             <img src="#" alt="sound1">
         </div>
@@ -40,15 +40,7 @@
         <div class="box" id="sound-box4">
             <img src="#" alt="sound4">
         </div>
-        </section>
         
-        <section>
-        <div id="boombox">
-            <img src="#" alt="main-boombox">
-        </div>
-        </section>
-         
-        <section>
         <div class="box" id="sound-box5">
             <img src="#" alt="sound5">
         </div>
@@ -61,19 +53,25 @@
         <div class="box" id="sound-box8">
             <img src="#" alt="sound8">
         </div>
-        </section>
         
-        <section>
+
+        <div id="boombox">
+            <img src="#" alt="main-boombox">
+        </div>
+
         <div class="box" id="playing-box1">1</div>
         <div class="box" id="playing-box2">2</div>
         <div class="box" id="playing-box3">3</div>
         <div class="box" id="playing-box4">4</div>
-        <div class="box" id="playing-box5">5</div>
-        </section>
+    </section>
+        
+    </main> 
+        
+    
+    
+   
 
 
-    </main>   
-</div> 
     <script src="js/main.js"></script>
 </body>
 </html>
