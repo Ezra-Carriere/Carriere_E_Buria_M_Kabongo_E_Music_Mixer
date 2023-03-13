@@ -3,7 +3,7 @@ Boombox Music Mixer
 
 ## Installation
 
-By using the drag and drop feature, you can play different audio tracks
+By using the drag and drop feature, and the different buttons on the page you can play different audio tracks
 
 ## Usage
 
