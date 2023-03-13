@@ -15,6 +15,9 @@
         <div class="logo">
             <h1>Music Mixer</h1>
         </div>
+        
+        <audio src="audio/Gary vs David.mp3"></audio>
+
         <div class="navbar">
         
             <ul>
@@ -56,13 +59,28 @@
         
 
         <div id="boombox">
-            <img src="images/Boombox Icons/boombox_with_buttons.svg" alt="main-boombox">
+            <img src="images/Boombox Icons/play_button.svg" id="playButton" class="top-buttons" alt="play-button">
+            <img src="images/Boombox Icons/pause_button.svg" id="pauseButton" class="top-buttons" alt="pause-button">
+            <img src="images/Boombox Icons/repeat_button.svg" id="rewindButton" class="bottom-buttons" alt="rewind-button">
+            <img src="images/Boombox Icons/volume_down_button.svg" id="volumedownButton" class="bottom-buttons" alt="volume-down-button">
+            <img src="images/Boombox Icons/volume_up_button.svg" id="volumeupButton" class="bottom-buttons" alt="volume-up-button">
+            <input id="volumeControl" type="range" min="0" max="100" step="1"></input>
+            <img src="images/Boombox Icons/boombox_no_buttons.svg" alt="main-boombox">
+            
         </div>
 
-        <div class="box" id="playing-box1">1</div>
-        <div class="box" id="playing-box2">2</div>
-        <div class="box" id="playing-box3">3</div>
-        <div class="box" id="playing-box4">4</div>
+        <div class="box" id="playing-box1">
+            <img data-trackref="Gary vs David" src="images/Boombox Icons/track_icon1.svg" class="track-ref" alt="track1">
+        </div>
+        <div class="box" id="playing-box2">
+            <img data-trackref="Sensei" src="images/Boombox Icons/track_icon2.svg" class="track-ref" alt="track2">
+        </div>
+        <div class="box" id="playing-box3">
+            <img data-trackref="Invincible" src="images/Boombox Icons/track_icon3.svg" class="track-ref" alt="track3">
+        </div>
+        <div class="box" id="playing-box4">
+            <img data-trackref="Gardens" src="images/Boombox Icons/track_icon4.svg" class="track-ref" alt="track4">
+        </div>
     </section>
         
     </main> 
