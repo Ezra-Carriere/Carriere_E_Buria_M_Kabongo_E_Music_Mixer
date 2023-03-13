@@ -1,10 +1,9 @@
 # Project Name
-
-TODO: Write a project description
+Boombox Music Mixer
 
 ## Installation
 
-TODO: Describe the installation process
+By using the drag and drop feature, you can play different audio tracks
 
 ## Usage
 
@@ -28,4 +27,4 @@ TODO: Write credits
 
 ## License
 
-TODO: Write license
+MIT
