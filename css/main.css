@@ -38,6 +38,16 @@ a{
     transition: 0.5s ease;
 }
 
+.dropBox{
+  background: linear-gradient(to bottom, #53007D, #8E2A95);
+  cursor: pointer;
+  height: 114px;
+  width: 114px;
+  border-radius: 15px;
+  border: solid 4px #8F8F8F;
+  transition: 0.5s ease;
+}
+
 .box:hover{
     transform: scale(1.2);
     -webkit-transform: scale(1.2);
