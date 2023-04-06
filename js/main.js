@@ -5,6 +5,8 @@ const   albumCovers = document.querySelectorAll(".box img"),
         rewindButton = document.querySelector('#rewindButton'),
         volSlider = document.querySelector('#volumeControl');
 
+        let Boxes = document.querySelectorAll(".box img"),
+        dropBoxes = document.querySelectorAll(".dropBox");
 
 function loadAudio() {
     let currentSrc = `audio/${this.dataset.trackref}.mp3`;
@@ -35,6 +37,11 @@ function setVolume() {
     theAudioEl.volume = (this.value/100); 
 }
 
+function handleStartDrag() {
+	console.log('started dragging this piece', this);
+	draggedPiece = this;
+}
+
 
 albumCovers.forEach(cover => cover.addEventListener('click', loadAudio));
 
@@ -43,3 +50,9 @@ rewindButton.addEventListener('click', restartAudio);
 pauseButton.addEventListener('click', pauseAudio);
 
 volSlider.addEventListener('change', setVolume);
+
+Boxes.forEach(piece => piece.addEventListener('dragstart', handleStartDrag));
+
+dropBoxes.forEach(zone => zone.addEventListener("dragover",handleDragOver));
+
+dropBoxes.forEach(zone => zone.addEventListener("drop",handleDrop));
