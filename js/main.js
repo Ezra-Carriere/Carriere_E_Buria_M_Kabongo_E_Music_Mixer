@@ -1,12 +1,14 @@
-const   albumCovers = document.querySelectorAll(".box img"),
-        theAudioEl = document.querySelector('audio'),
-        playButton = document.querySelector('#playButton'),
-        pauseButton = document.querySelector('#pauseButton'),
-        rewindButton = document.querySelector('#rewindButton'),
-        volSlider = document.querySelector('#volumeControl');
+const albumCovers = document.querySelectorAll(".box img"),
+      theAudioEl = document.querySelector('audio'),
+      playButton = document.querySelector('#playButton'),
+      pauseButton = document.querySelector('#pauseButton'),
+      rewindButton = document.querySelector('#rewindButton'),
+      volSlider = document.querySelector('#volumeControl');
 
-        let Boxes = document.querySelectorAll(".box img"),
-        dropBoxes = document.querySelectorAll(".dropBox");
+const soundBoxes = document.querySelectorAll(".box"),
+      dropBoxes = document.querySelectorAll(".dropBox");
+
+let draggedElement = null;
 
 function loadAudio() {
     let currentSrc = `audio/${this.dataset.trackref}.mp3`;
@@ -15,13 +17,13 @@ function loadAudio() {
 
     theAudioEl.load();
 
-
     playAudio();
 }
 
 function playAudio() { 
     theAudioEl.play(); 
 }
+
 function restartAudio() { 
     theAudioEl.currentTime = 0; 
     playAudio(); 
@@ -30,18 +32,27 @@ function restartAudio() {
 function pauseAudio() { theAudioEl.pause(); }
 
 function setVolume() {
-    
-    console.log(this.value);
-
-    
     theAudioEl.volume = (this.value/100); 
 }
 
-function handleStartDrag() {
-	console.log('started dragging this piece', this);
-	draggedPiece = this;
+function handleDragStart(e) {
+    draggedElement = this;
+    e.dataTransfer.setData('text/plain', '');
 }
 
+function handleDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+
+    if (draggedElement) {
+        this.appendChild(draggedElement);
+        this.querySelector('.track-ref').style.display = 'none';
+    }
+}
 
 albumCovers.forEach(cover => cover.addEventListener('click', loadAudio));
 
@@ -51,8 +62,8 @@ pauseButton.addEventListener('click', pauseAudio);
 
 volSlider.addEventListener('change', setVolume);
 
-Boxes.forEach(piece => piece.addEventListener('dragstart', handleStartDrag));
+soundBoxes.forEach(soundBox => soundBox.addEventListener('dragstart', handleDragStart));
+soundBoxes.forEach(soundBox => soundBox.setAttribute('draggable', 'true'));
 
-dropBoxes.forEach(zone => zone.addEventListener("dragover",handleDragOver));
-
-dropBoxes.forEach(zone => zone.addEventListener("drop",handleDrop));
+dropBoxes.forEach(dropBox => dropBox.addEventListener('dragover', handleDragOver));
+dropBoxes.forEach(dropBox => dropBox.addEventListener('drop', handleDrop));
