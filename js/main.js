@@ -46,42 +46,34 @@ document.addEventListener('DOMContentLoaded', function () {
             const audioElement = document.getElementById(audioId);
 
             if (this.classList.contains('dropBox')) {
-                playAudio(audioElement);
+                playAudio(audioElement, this);
+                this.setAttribute('data-audio-loop', audioId);
             } else {
-                audioElement.pause();
+                stopAudio(audioElement);
+                this.removeAttribute('data-audio-loop');
             }
 
-            // Clone the image from the sound box
             const clonedImage = draggedElement.cloneNode(true);
 
-            // Hide the playing box's original image
             const trackRef = this.querySelector('.track-ref');
             if (trackRef) {
                 trackRef.style.display = 'none';
             }
 
-            // Append the cloned image to the playing box
             this.appendChild(clonedImage);
-
-            // Hide the original image in the sound box
             draggedElement.style.display = 'none';
 
-            // Show the original image when moving back to a clear div
             if (this.classList.contains('box')) {
                 draggedElement.style.display = 'block';
                 clonedImage.classList.remove('track-ref');
             }
 
-            // Remove the dragged image from the previous box
             draggedElement.parentNode.removeChild(draggedElement);
 
-            // Make the cloned image draggable
             clonedImage.draggable = true;
             clonedImage.addEventListener('dragstart', handleDragStart);
 
-             // Show the track icon back when moving the sound-box image back to the sound-box div
-            
-               if (this.classList.contains('box') && originalBox.classList.contains('dropBox')) {
+            if (this.classList.contains('box') && originalBox.classList.contains('dropBox')) {
                 const originalTrackRef = originalBox.querySelector('.track-ref');
                 if (originalTrackRef) {
                     originalTrackRef.style.display = 'block';
@@ -89,18 +81,60 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
-});
 
-let lastPlayedAudio = null;
+    let audioLoopQueue = [];
 
-function playAudio(audioElement) {
+    function playAudio(audioElement, playingBox) {
     if (audioElement) {
-        if (lastPlayedAudio && !lastPlayedAudio.ended) {
-            lastPlayedAudio.addEventListener('ended', () => playAudio(audioElement));
-        } else {
-            audioElement.currentTime = 0;
-            audioElement.play();
+        // Check if there's another sound playing in the loop
+        const currentPlaying = audioLoopQueue.find(item => item.playingBox === playingBox);
+        if (currentPlaying) {
+            currentPlaying.audioElement.addEventListener('ended', () => {
+                const prevPlayingBox = getPrevPlayingBox(playingBox);
+                if (prevPlayingBox) {
+                    const prevAudioId = prevPlayingBox.getAttribute('data-audio-loop');
+                    const prevAudioElement = document.getElementById(prevAudioId);
+                    prevAudioElement.addEventListener('ended', () => {
+                        stopAudio(currentPlaying.audioElement);
+                        playAudio(audioElement, playingBox);
+                    });
+                    prevAudioElement.currentTime = 0;
+                    prevAudioElement.play();
+                }
+            });
+            return;
         }
-        lastPlayedAudio = audioElement;
+
+        audioElement.currentTime = 0;
+        audioElement.play().then(() => {
+            audioElement.addEventListener('ended', () => {
+                audioElement.currentTime = 0;
+                audioElement.play();
+            });
+        });
+
+        audioLoopQueue.push({ audioElement, playingBox });
     }
 }
+
+    function stopAudio(audioElement) {
+        if (audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+            audioLoopQueue = audioLoopQueue.filter(item => item.audioElement !== audioElement);
+        }
+    }
+
+    function getPrevPlayingBox(currentPlayingBox) {
+        const playingBoxArray = Array.from(playingBoxes);
+        const currentPlayingBoxIndex = playingBoxArray.indexOf(currentPlayingBox);
+
+        if (currentPlayingBoxIndex > 0) {
+            return playingBoxArray[currentPlayingBoxIndex - 1];
+        } else {
+            return null;
+        }
+    }
+});
+
+
