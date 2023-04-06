@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const soundBoxes = document.querySelectorAll('.box');
     const playingBoxes = document.querySelectorAll('.dropBox');
     const allBoxes = document.querySelectorAll('.box, .dropBox');
@@ -19,9 +19,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     let draggedElement = null;
+    let originalBox = null;
 
     function handleDragStart(e) {
+        if (e.target.classList.contains('track-ref')) {
+            e.preventDefault();
+            return;
+        }
         draggedElement = e.target;
+        originalBox = e.target.parentElement;
         e.dataTransfer.effectAllowed = 'move';
     }
 
@@ -35,8 +41,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleDrop(e) {
         e.preventDefault();
+        if (draggedElement.getAttribute('data-audio-id')) {
+            const audioId = draggedElement.getAttribute('data-audio-id');
+            const audioElement = document.getElementById(audioId);
 
-        if (draggedElement) {
+            if (this.classList.contains('dropBox')) {
+                playAudio(audioElement);
+            } else {
+                audioElement.pause();
+            }
+
             // Clone the image from the sound box
             const clonedImage = draggedElement.cloneNode(true);
 
@@ -55,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show the original image when moving back to a clear div
             if (this.classList.contains('box')) {
                 draggedElement.style.display = 'block';
+                clonedImage.classList.remove('track-ref');
             }
 
             // Remove the dragged image from the previous box
@@ -64,23 +79,28 @@ document.addEventListener('DOMContentLoaded', function() {
             clonedImage.draggable = true;
             clonedImage.addEventListener('dragstart', handleDragStart);
 
-            // Hide the track icon in the playing box when dropping a sound-box image
-            if (this.classList.contains('dropBox') && trackRef) {
-                trackRef.style.display = 'none';
-            }
-
-            // Show the track icon back when moving the sound-box image back to the sound-box div
-            if (this.classList.contains('box')) {
-                const originalPlayingBox = Array.from(playingBoxes).find(box => box.contains(draggedElement));
-                if (originalPlayingBox) {
-                    const originalTrackRef = originalPlayingBox.querySelector('.track-ref');
-                    if (originalTrackRef) {
-                        originalTrackRef.style.display = 'block';
-                    }
+             // Show the track icon back when moving the sound-box image back to the sound-box div
+            
+               if (this.classList.contains('box') && originalBox.classList.contains('dropBox')) {
+                const originalTrackRef = originalBox.querySelector('.track-ref');
+                if (originalTrackRef) {
+                    originalTrackRef.style.display = 'block';
                 }
             }
         }
     }
-
-    // Add your event listeners for play, pause, rewind, and volume control here
 });
+
+let lastPlayedAudio = null;
+
+function playAudio(audioElement) {
+    if (audioElement) {
+        if (lastPlayedAudio && !lastPlayedAudio.ended) {
+            lastPlayedAudio.addEventListener('ended', () => playAudio(audioElement));
+        } else {
+            audioElement.currentTime = 0;
+            audioElement.play();
+        }
+        lastPlayedAudio = audioElement;
+    }
+}
