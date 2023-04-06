@@ -1,21 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
-<style type="text/css">
-	.st0{stroke:#000000;stroke-width:0.66;stroke-miterlimit:10;}
-	.st1{stroke:#000000;stroke-width:0.85;stroke-miterlimit:10;}
-	.st2{stroke:#000000;stroke-miterlimit:10;}
-	.st3{stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
-</style>
-<path class="st0" d="M11.41,266.07L11.41,266.07c3.75,2.16,8.58,0.87,10.74-2.88L124.03,86.74c2.16-3.75,0.87-8.58-2.88-10.74l0,0
-	c-3.75-2.16-8.58-0.87-10.74,2.88L8.54,255.33C6.37,259.07,7.67,263.91,11.41,266.07z"/>
-<path class="st1" d="M230.65,265.87L230.65,265.87c-3.75,2.16-8.58,0.87-10.74-2.88L118.41,87.21c-2.16-3.75-0.87-8.58,2.88-10.74
-	l0,0c3.75-2.16,8.58-0.87,10.74,2.88l101.49,175.79C235.69,258.88,234.39,263.71,230.65,265.87z"/>
-<rect x="16.76" y="252.01" class="st2" width="210.22" height="14.72"/>
-<path class="st3" d="M120.82,90.14L120.82,90.14c-4.05,0-7.36-3.31-7.36-7.36V40.74c0-4.05,3.31-7.36,7.36-7.36h0
-	c4.05,0,7.36,3.31,7.36,7.36v42.04C128.18,86.83,124.87,90.14,120.82,90.14z"/>
-<circle class="st2" cx="276.18" cy="87.48" r="16.82"/>
-<path class="st2" d="M272.46,96.05h5.88c2.03,0,3.69,1.66,3.69,3.69v163.31c0,2.03-1.66,3.69-3.69,3.69h-5.88
-	c-2.03,0-3.69-1.66-3.69-3.69V99.74C268.77,97.71,270.43,96.05,272.46,96.05z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 114 114.17">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f0f;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: .5px;
+      }
+
+      .cls-2 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-3 {
+        fill: url(#radial-gradient-2);
+        opacity: .5;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="57" cy="57" fx="57" fy="57" r="57" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6600e0"/>
+      <stop offset=".37" stop-color="#3f0081"/>
+      <stop offset=".67" stop-color="#22003b"/>
+      <stop offset=".89" stop-color="#100010"/>
+      <stop offset="1" stop-color="#0a0000"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cy="57.17" fy="57.17" r="57" xlink:href="#radial-gradient"/>
+  </defs>
+  <g id="Layer_1" data-name="Layer 1">
+    <rect class="cls-2" x="0" y="0" width="114" height="114" rx="57" ry="57"/>
+  </g>
+  <g id="Layer_2" data-name="Layer 2">
+    <path class="cls-1" d="m71.9,32.4l-21.71,5.01-3.1.71v30.02c-1.24-.84-2.73-1.33-4.34-1.33-4.28,0-7.75,3.47-7.75,7.75s3.47,7.75,7.75,7.75c1.61,0,3.1-.49,4.34-1.33,1.48-1,2.59-2.5,3.1-4.25v-29.18l21.71-5.01v19.39c-1.24-.84-2.73-1.33-4.34-1.33-4.28,0-7.75,3.47-7.75,7.75s3.47,7.75,7.75,7.75c1.61,0,3.1-.49,4.34-1.33,1.48-1,2.59-2.5,3.1-4.25V31.68l-3.1.72Zm-29.15,46.51c-2.4,0-4.34-1.94-4.34-4.34s1.94-4.34,4.34-4.34,4.34,1.94,4.34,4.34-1.94,4.34-4.34,4.34Zm24.81-6.2c-2.4,0-4.34-1.94-4.34-4.34s1.94-4.34,4.34-4.34,4.34,1.94,4.34,4.34-1.94,4.34-4.34,4.34Zm4.34-33.34l-21.71,5.01v-3.78l21.71-5.01v3.78Z"/>
+    <rect class="cls-3" x="0" y=".17" width="114" height="114" rx="57" ry="57"/>
+  </g>
 </svg>
