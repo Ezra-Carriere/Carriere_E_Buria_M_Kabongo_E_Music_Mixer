@@ -40,101 +40,109 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleDrop(e) {
-        e.preventDefault();
-        if (draggedElement.getAttribute('data-audio-id')) {
-            const audioId = draggedElement.getAttribute('data-audio-id');
-            const audioElement = document.getElementById(audioId);
+    e.preventDefault();
+    if (draggedElement.getAttribute('data-audio-id')) {
+        const audioId = draggedElement.getAttribute('data-audio-id');
+        const audioElement = document.getElementById(audioId);
 
-            if (this.classList.contains('dropBox')) {
-                playAudio(audioElement, this);
-                this.setAttribute('data-audio-loop', audioId);
-            } else {
-                stopAudio(audioElement);
-                this.removeAttribute('data-audio-loop');
+        if (this.classList.contains('dropBox')) {
+            playAudio(audioElement, this);
+            this.setAttribute('data-audio-loop', audioId);
+        } else {
+            stopAudio(audioElement);
+            this.removeAttribute('data-audio-loop');
+        }
+
+        const clonedImage = draggedElement.cloneNode(true);
+
+        const trackRef = this.querySelector('.track-ref');
+        if (trackRef) {
+            trackRef.style.display = 'none';
+        }
+
+        this.appendChild(clonedImage);
+        draggedElement.style.display = 'none';
+
+        if (this.classList.contains('box')) {
+            draggedElement.style.display = 'block';
+            clonedImage.classList.remove('track-ref');
+        }
+
+        draggedElement.parentNode.removeChild(draggedElement);
+
+        clonedImage.draggable = true;
+        clonedImage.addEventListener('dragstart', handleDragStart);
+
+        if (this.classList.contains('box') && originalBox.classList.contains('dropBox')) {
+            const originalTrackRef = originalBox.querySelector('.track-ref');
+            if (originalTrackRef) {
+                originalTrackRef.style.display = 'block';
             }
-
-            const clonedImage = draggedElement.cloneNode(true);
-
-            const trackRef = this.querySelector('.track-ref');
-            if (trackRef) {
-                trackRef.style.display = 'none';
-            }
-
-            this.appendChild(clonedImage);
-            draggedElement.style.display = 'none';
-
-            if (this.classList.contains('box')) {
-                draggedElement.style.display = 'block';
-                clonedImage.classList.remove('track-ref');
-            }
-
-            draggedElement.parentNode.removeChild(draggedElement);
-
-            clonedImage.draggable = true;
-            clonedImage.addEventListener('dragstart', handleDragStart);
-
-            if (this.classList.contains('box') && originalBox.classList.contains('dropBox')) {
-                const originalTrackRef = originalBox.querySelector('.track-ref');
-                if (originalTrackRef) {
-                    originalTrackRef.style.display = 'block';
-                }
-            }
+            // Stop the audio if the image was removed from a playing box
+            stopAudio(audioElement);
+            originalBox.removeAttribute('data-audio-loop');
         }
     }
+}
 
     let audioLoopQueue = [];
 
     function playAudio(audioElement, playingBox) {
     if (audioElement) {
-        // Check if there's another sound playing in the loop
         const currentPlaying = audioLoopQueue.find(item => item.playingBox === playingBox);
         if (currentPlaying) {
             currentPlaying.audioElement.addEventListener('ended', () => {
-                const prevPlayingBox = getPrevPlayingBox(playingBox);
-                if (prevPlayingBox) {
-                    const prevAudioId = prevPlayingBox.getAttribute('data-audio-loop');
-                    const prevAudioElement = document.getElementById(prevAudioId);
-                    prevAudioElement.addEventListener('ended', () => {
-                        stopAudio(currentPlaying.audioElement);
-                        playAudio(audioElement, playingBox);
-                    });
-                    prevAudioElement.currentTime = 0;
-                    prevAudioElement.play();
-                }
+                stopAudio(currentPlaying.audioElement);
+                playAudio(audioElement, playingBox);
             });
             return;
         }
 
-        audioElement.currentTime = 0;
-        audioElement.play().then(() => {
-            audioElement.addEventListener('ended', () => {
-                audioElement.currentTime = 0;
-                audioElement.play();
+        const prevPlayingBox = getPrevPlayingBox(playingBox);
+        const endedCallback = () => {
+            audioElement.currentTime = 0;
+            audioElement.play().then(() => {
+                audioElement.addEventListener('ended', endedCallback);
             });
-        });
+        };
 
-        audioLoopQueue.push({ audioElement, playingBox });
+        if (prevPlayingBox) {
+            const prevAudioId = prevPlayingBox.getAttribute('data-audio-loop');
+            const prevAudioElement = document.getElementById(prevAudioId);
+            prevAudioElement.addEventListener('ended', endedCallback);
+        } else {
+            audioElement.currentTime = 0;
+            audioElement.play().then(() => {
+                audioElement.addEventListener('ended', endedCallback);
+            });
+        }
+        audioLoopQueue.push({ audioElement, playingBox, endedCallback });
     }
 }
-
-    function stopAudio(audioElement) {
-        if (audioElement) {
-            audioElement.pause();
-            audioElement.currentTime = 0;
-            audioLoopQueue = audioLoopQueue.filter(item => item.audioElement !== audioElement);
+function stopAudio(audioElement) {
+    if (audioElement) {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+        const audioLoopItem = audioLoopQueue.find(item => item.audioElement === audioElement);
+        if (audioLoopItem) {
+            const prevPlayingBox = getPrevPlayingBox(audioLoopItem.playingBox);
+            if (prevPlayingBox) {
+                const prevAudioId = prevPlayingBox.getAttribute('data-audio-loop');
+                const prevAudioElement = document.getElementById(prevAudioId);
+                prevAudioElement.removeEventListener('ended', audioLoopItem.endedCallback);
+            }
         }
+        audioLoopQueue = audioLoopQueue.filter(item => item.audioElement !== audioElement);
     }
+}
+function getPrevPlayingBox(currentPlayingBox) {
+    const playingBoxArray = Array.from(playingBoxes);
+    const currentPlayingBoxIndex = playingBoxArray.indexOf(currentPlayingBox);
 
-    function getPrevPlayingBox(currentPlayingBox) {
-        const playingBoxArray = Array.from(playingBoxes);
-        const currentPlayingBoxIndex = playingBoxArray.indexOf(currentPlayingBox);
-
-        if (currentPlayingBoxIndex > 0) {
-            return playingBoxArray[currentPlayingBoxIndex - 1];
-        } else {
-            return null;
-        }
+    if (currentPlayingBoxIndex > 0) {
+        return playingBoxArray[currentPlayingBoxIndex - 1];
+    } else {
+        return null;
+    }
     }
 });
-
-
