@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         clonedImage.draggable = true;
         clonedImage.addEventListener('dragstart', handleDragStart);
 
-        if (this.classList.contains('box') && originalBox.classList.contains('dropBox')) {
+        if (this.classList.contains('box')) {
             const originalTrackRef = originalBox.querySelector('.track-ref');
             if (originalTrackRef) {
                 originalTrackRef.style.display = 'block';
