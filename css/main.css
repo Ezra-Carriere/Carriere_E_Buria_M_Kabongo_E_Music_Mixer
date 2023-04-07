@@ -1,5 +1,12 @@
+@font-face {
+	font-family: 'audiowide-regular-webfont';
+	src: url('../fonts/audiowide-regular-webfont.eot');
+	src: url('../fonts/audiowide-regular-webfont.woff') format('woff'), url('../fonts/audiowide-regular-webfont.ttf') format('truetype'), url('../fonts/audiowide-regular-webfont.svg') format('svg');
+}
+
 body{
     background-color: #260036;
+    background: url(../images/background.png);
     color: white;
     max-width: 1920px;
     margin: 0 auto;
@@ -15,7 +22,9 @@ body{
 }
 
 h1{
+  font-family: 'audiowide-regular-webfont';
   font-size: 45px;
+  text-shadow: black 2px 2px 5px;
 }
 
 ul{
@@ -23,8 +32,18 @@ ul{
     text-decoration: none;
     font-size: 30px;
 }
+
+.logo{
+    margin-left: 100px;
+}
+
+.navbar{
+  margin-left: 100px;
+}
 a{
     text-decoration: none;
+    font-family: 'audiowide-regular-webfont';
+    text-shadow: black 2px 2px 5px;
     color: white;
 }
 
