@@ -15,10 +15,49 @@
         <ul>
                 <li id="about" ><a href="#" >About</a></li>
                 <li id="rules"><a href="#">Rules</a></li>
-                <li id="info"><a href="#">Info</a></li>
+                <li id="info"><a href="#">Our Team</a></li>
             </ul>
     </nav>
-    
+   <!--overlapping window for nav links-->
+<div id="aboutOverlay" class="overlay">
+    <div class="overlay-content">
+        <button class="close-btn">&times;</button>
+        <h2>About</h2>
+        <p>Music mixer web game offers an engaging, interactive platform for users to explore their creativity by crafting custom compositions. The intuitive drag-and-drop interface allows players to seamlessly select and arrange audio tracks, giving them the freedom to experiment with various sound combinations and create unique musical arrangements. With a diverse library of audio samples spanning different genres, tempos, and instruments, users can tailor their compositions to their own preferences and styles. Designed to be accessible to both beginners and experienced musicians, this music mixer game fosters a fun and collaborative environment for musical exploration, enabling users to share their creations with others and discover the endless possibilities of audio composition.</p>
+    </div>
+</div>
+
+<div id="rulesOverlay" class="overlay">
+    <div class="overlay-content">
+        <button class="close-btn">&times;</button>
+        <h2>Rules</h2>
+        <p>1. Begin with the sound boxes: Players will start with a collection of sound boxes, each containing a unique audio sample or loop. The boxes are represented by images.<br>
+
+2. Drag and drop: To create a custom music composition, players must drag the images from the sound boxes and drop them into the playing boxes in the desired order.<br>
+
+3. Experiment with combinations: Players are encouraged to experiment with various combinations of audio samples and loops to create a unique composition. They can mix and match different sounds to their liking.<br>
+
+4. Playback and adjust volume: Use the play, pause, rewind, and volume control buttons provided to listen to the composition and adjust the volume as needed.<br>
+
+5. Rearrange and modify: Players can rearrange the order of the audio samples in the playing boxes by dragging and dropping the images. To remove a sample from the composition, simply drag it back to the sound boxes area.<br>
+
+6. Create a seamless loop: The game is designed to create a seamless loop of the chosen audio samples. Once the last sample in the playing boxes finishes playing, the loop will start again from the first sample.<br>
+
+7. Share your composition: After creating their unique music composition, players can share their creation with friends and family, or challenge others to create a composition using the same set of audio samples.</p>
+    </div>
+</div>
+
+<div id="infoOverlay" class="overlay">
+    <div class="overlay-content">
+        <button class="close-btn">&times;</button>
+        <h2>Our Team</h2>
+        <div class="image-nav-row">
+        <img src="images/Icon-1.svg" alt="Image 1">
+        <img src="images/Icon-1.svg" alt="Image 2">
+        <img src="images/Icon-1.svg" alt="Image 3">
+        </div>
+    </div>
+</div>
     
     <main>
         <section class="grid" id="sounds">
