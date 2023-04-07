@@ -70,7 +70,7 @@ nav {
   color: hsla(298, 45%, 74%, 0.842);
 }
 #infoOverlay p{
-  hsla(298, 45%, 74%, 0.842);
+  color:hsla(298, 45%, 74%, 0.842);
 }
 .close-btn {
     position: absolute;
