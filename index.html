@@ -8,25 +8,48 @@
     <title>Music Mixer</title>
 </head>
 <body>
-
-    
-    
-    <main>
+<nav>
         <div class="logo">
             <h1>Music Mixer</h1>
         </div>
-        
-        <audio src="audio/Gary vs David.mp3"></audio>
+        <ul>
+                <li id="about" ><a href="#aboutModal" class="modal-trigger">About</a></li>
+                <li id="rules"><a href="#rulesModal" class="modal-trigger">Rules</a></li>
+                <li id="info"><a href="#infoModal" class="modal-trigger">Info</a></li>
+        </ul>
+</nav>
+<!-- Modal Structure for About -->
+<div id="aboutModal" class="modal">
+  <div class="modal-content">
+    <h4>About</h4>
+    <p>Put your about content here.</p>
+  </div>
+  <div class="modal-close">&#10005;</div>
+</div>
 
-        <div class="navbar">
-        
-            <ul>
-                <li id="about" ><a href="#" >About</a></li>
-                <li id="rules"><a href="#">Rules</a></li>
-                <li id="info"><a href="#">Info</a></li>
-            </ul>
-        
-        </div>
+<!-- Modal Structure for Rules -->
+<div id="rulesModal" class="modal">
+  <div class="modal-content">
+    <h4>Rules</h4>
+    <p>Put your rules content here.</p>
+  </div>
+  <div class="modal-close">&#10005;</div>
+</div>
+
+<!-- Modal Structure for Info -->
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <h4>Info</h4>
+    <p>Put your info content here.</p>
+    <img src="path/to/your/image1.jpg" alt="Image 1">
+    <img src="path/to/your/image2.jpg" alt="Image 2">
+    <img src="path/to/your/image3.jpg" alt="Image 3">
+  </div>
+  <div class="modal-close">&#10005;</div>
+</div>
+    
+    
+    <main>
         <section class="grid" id="sounds">
         <div class="box" id="sound-box1">
             <audio id="sound1" src="audio/1-lead-a.mp3"></audio>
@@ -64,7 +87,7 @@
             <audio id="sound8" src="audio/bonus-choir.mp3"></audio>
             <img data-audio-id="sound8" data-trackref="" src="images/Icon-8.svg" alt="sound8">
         </div>
-        
+       
 
         <div id="boombox">
             <img src="images/Boombox Icons/play_button.svg" id="playButton" class="top-buttons" alt="play-button">
@@ -78,15 +101,19 @@
         </div>
 
         <div class="dropBox" id="playing-box1">
+            <div class="progress"></div>
             <img data-trackref="" src="images/Boombox Icons/track_icon1.svg" class="track-ref" alt="track1">
         </div>
         <div class="dropBox" id="playing-box2">
+            <div class="progress"></div>
             <img data-trackref="" src="images/Boombox Icons/track_icon2.svg" class="track-ref" alt="track2">
         </div>
         <div class="dropBox" id="playing-box3">
+            <div class="progress"></div>
             <img data-trackref="" src="images/Boombox Icons/track_icon3.svg" class="track-ref" alt="track3">
         </div>
         <div class="dropBox" id="playing-box4">
+            <div class="progress"></div>
             <img data-trackref="" src="images/Boombox Icons/track_icon4.svg" class="track-ref" alt="track4">
         </div>
     </section>

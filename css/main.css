@@ -1,3 +1,18 @@
+<<<<<<< Updated upstream
+=======
+@font-face {
+	font-family: 'audiowide-regular-webfont';
+	src: url('../fonts/audiowide-regular-webfont.eot');
+	src: url('../fonts/audiowide-regular-webfont.woff') format('woff'), url('../fonts/audiowide-regular-webfont.ttf') format('truetype'), url('../fonts/audiowide-regular-webfont.svg') format('svg');
+}
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+>>>>>>> Stashed changes
 body{
     background-color: #260036;
     color: white;
@@ -18,11 +33,53 @@ h1{
   font-size: 45px;
 }
 
-ul{
-    list-style: none;
-    text-decoration: none;
-    font-size: 30px;
+nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    padding: 25px 35px;
+    font-family: 'Courier New', Courier, monospace;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+    z-index: 100;
 }
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+}
+
+li a {
+    margin-left: 40px;
+}
+
+nav a {
+    color: aliceblue;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+<<<<<<< Updated upstream
+=======
+
+nav li a:hover {
+    color: rgb(128, 1, 133);
+    transition-duration: .4s;
+    border-radius: 5px;
+    height: 30px;
+    width: 100%;
+}
+
+.logo {
+    height: 35px;
+    width: auto;
+}
+>>>>>>> Stashed changes
 a{
     text-decoration: none;
     color: white;
@@ -46,6 +103,8 @@ a{
   border-radius: 15px;
   border: solid 4px #8F8F8F;
   transition: 0.5s ease;
+  position: relative;
+  bottom: 100px;
 }
 
 .box:hover{
@@ -74,7 +133,6 @@ ul {
 
   #sound-box1{
     grid-column: 2/2;
-    
   }
 
   #sound-box2{
@@ -175,7 +233,56 @@ ul {
   position: absolute;
   margin: 460px 340px 0px;
 }
-
+.progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background-color: #00c853;
+    z-index: 10;
+    display: none;
+}
 
 /*info nav bar*/
+/* Add the following CSS to your existing main.css file */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  position: relative;
+}
+
+.modal-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  cursor: pointer;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 

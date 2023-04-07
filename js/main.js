@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const audioId = draggedElement.getAttribute('data-audio-id');
             const audioElement = document.getElementById(audioId);
 
+<<<<<<< Updated upstream
             if (this.classList.contains('dropBox')) {
                 playAudio(audioElement, this);
                 this.setAttribute('data-audio-loop', audioId);
@@ -78,6 +79,40 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (originalTrackRef) {
                     originalTrackRef.style.display = 'block';
                 }
+=======
+        if (this.classList.contains('dropBox')) {
+            playAudio(audioElement, this);
+            this.setAttribute('data-audio-loop', audioId);
+        } else {
+            stopAudio(audioElement);
+            this.removeAttribute('data-audio-loop');
+        }
+
+        const clonedImage = draggedElement.cloneNode(true);
+
+        const trackRef = this.querySelector('.track-ref');
+        if (trackRef) {
+            trackRef.style.display = 'none';
+        }
+
+        this.appendChild(clonedImage);
+        draggedElement.style.display = 'none';
+
+        if (this.classList.contains('box')) {
+            draggedElement.style.display = 'block';
+            clonedImage.classList.remove('track-ref');
+        }
+
+        draggedElement.parentNode.removeChild(draggedElement);
+
+        clonedImage.draggable = true;
+        clonedImage.addEventListener('dragstart', handleDragStart);
+
+        if (this.classList.contains('box')) {
+            const originalTrackRef = originalBox.querySelector('.track-ref');
+            if (originalTrackRef) {
+                originalTrackRef.style.display = 'block';
+>>>>>>> Stashed changes
             }
         }
     }
