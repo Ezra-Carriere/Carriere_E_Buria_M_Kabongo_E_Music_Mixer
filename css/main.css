@@ -16,7 +16,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.6);
-    position: absolute;
+    position: fixed;
     top: 0;
     padding: 25px 35px;
     backdrop-filter: blur(10px);
@@ -169,7 +169,6 @@ ul {
 
     height: 514px;
     width: 815px;
-    margin-bottom: 100px;
   }
   #sounds{
     padding-top: 100px;
