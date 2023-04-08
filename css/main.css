@@ -106,12 +106,94 @@ nav a {
 }
 
 nav li a:hover {
-    color: rgb(122, 0, 146);
-    transition-duration: .4s;
-    border-radius: 5px;
-    height: 30px;
-    width: 100%;
+  color: rgb(122, 0, 146);
+  transition-duration: .4s;
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;
+  animation: none;
 }
+
+@keyframes navbarColor {
+    0% {
+        background-color: rgba(75, 0, 130, 0.6);
+    }
+    50% {
+        background-color: rgba(128, 0, 128, 0.6);
+    }
+    100% {
+        background-color: rgba(75, 0, 130, 0.6);
+    }
+}
+
+nav {
+    animation: navbarColor 3s linear infinite;
+}
+
+.logo {
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+}
+
+.logo::before,
+.logo::after,
+.logo .left-line,
+.logo .right-line {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: lineAnimation 3s linear infinite;
+    opacity: 0;
+}
+
+.logo::before,
+.logo::after {
+    width: 100%;
+    height: 2px;
+}
+
+.logo .left-line,
+.logo .right-line {
+    width: 2px;
+    height: 100%;
+}
+
+.logo::before {
+    top: 0;
+    transform-origin: top;
+}
+
+.logo::after {
+    bottom: 0;
+    transform-origin: bottom;
+}
+
+.logo .left-line {
+    left: 0;
+    transform-origin: left;
+}
+
+.logo .right-line {
+    right: 0;
+    transform-origin: right;
+}
+
+@keyframes lineAnimation {
+    0% {
+        opacity: 0;
+        transform: scaleX(0) scaleY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleX(1) scaleY(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleX(0) scaleY(0);
+    }
+}
+
 
 
 body{
@@ -153,7 +235,25 @@ a{
     width: 114px;
     border-radius: 15px;
     border: solid 4px #8F8F8F;
+    animation: borderAnimation 3s infinite;
     transition: 0.5s ease;
+}
+@keyframes borderAnimation {
+  0% {
+    border-color: rgb(196, 108, 188);
+  }
+  25% {
+    border-color: #9B59B6;
+  }
+  50% {
+    border-color: #8E44AD;
+  }
+  75% {
+    border-color: #663399;
+  }
+  100% {
+    border-color: rgb(196, 108, 188);
+  }
 }
 
 .dropBox{
@@ -163,6 +263,7 @@ a{
   width: 114px;
   border-radius: 15px;
   border: solid 4px #8F8F8F;
+  animation: borderAnimation 3s infinite;
   transition: 0.5s ease;
 }
 
