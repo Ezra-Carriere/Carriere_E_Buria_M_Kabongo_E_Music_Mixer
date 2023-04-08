@@ -53,6 +53,7 @@ nav {
     height: 300px;
     width: 100%;
     padding: 30px;
+    flex-direction: row;
 }
 #rulesOverlay p{
   font-size: 20px;
